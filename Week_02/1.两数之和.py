@@ -1,27 +1,17 @@
-class Solution1:
-    def isAnagram(self, s: str, t: str) -> bool:
-    #使用哈希表，时间复杂度：O(n)
-        hashMap=dict()
-        for i in s:
-            hashMap[i]=hashMap.get(i,0)+1
-        for j in t:
-            hashMap[j]=hashMap.get(j,0)-1
-        for value in hashMap.values():
-            if value!=0:
-                return False
-        return True
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # 暴力法 O(n^2)
+        # for i in range(len(nums)-1):
+        #     for j in range(i+1,len(nums)):
+        #         if nums[i]+nums[j]==target and i!=j:
+        #             return [i,j]
 
-
-class Solution2:
-    # 排序后比较是否相等,O(nlogn)
-    def isAnagram(self, s: str, t: str) -> bool:
-        s = ''.join(sorted(s))
-        t = ''.join(sorted(t))
-        if s == t:
-            return True
-        else:
-            return False
-
-
+        # 使用hashmap,O(n)
+        hashMap = dict()
+        for i in range(len(nums)):
+            if target - nums[i] in hashMap:
+                return [i, hashMap[target - nums[i]]]
+            else:
+                hashMap[nums[i]] = i
 
 #2020-12-21 第一次
